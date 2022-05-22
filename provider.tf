@@ -18,6 +18,9 @@ terraform {
 provider "aws" {
   region = "eu-west-1"
 
+  access_key = var.NETWORKING_AWS_ACCESS_KEY_ID
+  secret_key = var.NETWORKING_AWS_SECRET_ACCESS_KEY
+
   default_tags {
     tags = {
       project     = "cross-account"
