@@ -1,7 +1,7 @@
 resource "aws_route53_zone" "dev_hz" {
   provider = aws.development
   for_each = local.apex_domains
-  name     = [for a in each.value : "dev.${a}"]
+  name     = "dev.${a}"
 }
 
 resource "aws_route53_zone" "prod_hz" {
