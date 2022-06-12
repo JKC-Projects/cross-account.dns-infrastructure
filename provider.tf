@@ -16,23 +16,25 @@ terraform {
 }
 
 provider "aws" {
+  alias  = "development"
   region = "eu-west-1"
 
-  access_key = var.NETWORKING_AWS_ACCESS_KEY_ID
-  secret_key = var.NETWORKING_AWS_SECRET_ACCESS_KEY
+  access_key = var.DEV_DNS_DEPLOYER_AWS_ACCESS_KEY_ID
+  secret_key = var.DEV_DNS_DEPLOYER_AWS_SECRET_ACCESS_KEY
 
   default_tags {
-    tags = {
-      project     = "cross-account"
-      managed_by  = "terraform"
-      github_repo = "cross-account.dns-infrastructure"
-    }
+    tags = local.default_tags
   }
 }
 
-# Data block allows us to access the above default tags
-# https://learn.hashicorp.com/tutorials/terraform/aws-default-tags?in=terraform/aws
-data "aws_default_tags" "current" {}
+provider "aws" {
+  alias  = "PRODUCTION"
+  region = "eu-west-1"
 
-# Get information about the AWS account using this terraform
-data "aws_caller_identity" "current" {}
+  access_key = var.PROD_DNS_DEPLOYER_AWS_ACCESS_KEY_ID
+  secret_key = var.PROD_DNS_DEPLOYER_AWS_SECRET_ACCESS_KEY
+
+  default_tags {
+    tags = local.default_tags
+  }
+}
