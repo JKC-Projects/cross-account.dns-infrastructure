@@ -22,7 +22,7 @@ resource "aws_ssm_parameter" "dev_route53_names" {
   name        = format("/route53/%s/apex-domain", each.value.name)
   description = "Describes the Route53 Apex Domain for the Hosted Zone holding records under: ${each.value.name}"
   type        = "String"
-  value       = each.value.zone_id
+  value       = each.value.name
 }
 
 resource "aws_ssm_parameter" "prod_route53_names" {
@@ -31,5 +31,5 @@ resource "aws_ssm_parameter" "prod_route53_names" {
   name        = "/route53/${each.value.name}/apex-domain"
   description = "Describes the Route53 Apex Domain for the Hosted Zone holding records under: ${each.value.name}"
   type        = "String"
-  value       = each.value.zone_id
+  value       = each.value.name
 }
