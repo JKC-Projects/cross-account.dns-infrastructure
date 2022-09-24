@@ -2,8 +2,6 @@ name: 'Test Feature Branch'
 
 on:
   push:
-    branches:
-    - 'feature/**'
 
 jobs:
   run-terraform-test:
