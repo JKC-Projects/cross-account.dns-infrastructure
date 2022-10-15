@@ -1,6 +1,7 @@
 locals {
   apex_domains = toset([
-    "small.domains"
+    "small.domains",
+    "john-chung.dev"
   ])
 
   // default_tags are not to be used directly. Only used here so we have common tags across all AWS providers
